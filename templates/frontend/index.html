@@ -1,43 +1,34 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Alpaca Strategy Statistics</title>
-        <script>
+<head>
+    <title>Alpaca Strategy Statistics</title>
+</head>
+<body>
+<h1>Sandbox Trading Stats</h1>
+<div id="content">
+    <table class="table table-striped">
+        <tr>
+            <th>Symbol</th>
+            <th>Market Value</th>
+            <th>Intraday P/L (%)</th>
+            <th>Total P/L (%)</th>
+            <th>Share of portfolio (%)</th>
 
-            //  This function communicates with django (backend)
+            {% for key, position in positions.iterrows %}
+                <tr>
+                    <td>{{ position.symbol }}</td>
+                    <td>{{ position.market_value }}</td>
+                    <td>{{ position.unrealized_intraday_plpc }}</td>
+                    <td>{{ position.unrealized_plpc }}</td>
+                    <td>{{ position.share_of_portfolio }}</td>
+                </tr>
+            {% endfor %}
+    </table>
+    <ul>
+        <li>Total equity value: {{ portfolio_val }}</li>
+        <li>Total cash: {{ cash }}</li>
+    </ul>
+</div>
 
-            function showSection(section) {
-                fetch(`/sections/${section}`)
-                .then(response => response.text())
-                .then(text => {
-                    console.log(text);
-                    document.querySelector('#content').innerHTML = text;
-                });
-
-            }
-
-
-            document.addEventListener("DOMContentLoaded", function() {
-                document.querySelectorAll('button').forEach(button => {
-                    button.onclick = function() {
-                        showSection(this.dataset.section)
-                    }
-                })
-            });
-
-
-        </script>
-    </head>
-    <body>
-        <h1>Hello</h1>
-        <button data-section="1">Section 1</button>
-        <button data-section="2">Section 2</button>
-        <button data-section="3">Section 3</button>
-
-        <!-- Contents loaded from server is inserted here by javascript -->
-        <div id="content">
-
-        </div>
-
-    </body>
+</body>
 </html>
