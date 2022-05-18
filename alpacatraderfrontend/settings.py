@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://alpacafrontend.herokuapp.com/"]
+ALLOWED_HOSTS = ["127.0.0.1", "https://alpacafrontend.herokuapp.com/"]
 
 
 # Application definition
@@ -57,7 +57,7 @@ ROOT_URLCONF = "alpacatraderfrontend.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ["templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
